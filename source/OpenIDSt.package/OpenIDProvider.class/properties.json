@@ -6,7 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"issuer",
 		"userInfoEndpoint",
 		"jwkSetLocation",
 		"authorizationGrant"
