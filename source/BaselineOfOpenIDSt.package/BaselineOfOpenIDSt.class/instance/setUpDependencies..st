@@ -4,7 +4,7 @@ setUpDependencies: spec
 	spec
 		baseline: 'OAuth2St'
 		with: [ spec
-				repository: 'github://fortizpenaloza/OAuth2St:master/source';
+				repository: 'github://fortizpenaloza/OAuthSt:master/source';
 				loads: #('Deployment') ].
 
 	spec
