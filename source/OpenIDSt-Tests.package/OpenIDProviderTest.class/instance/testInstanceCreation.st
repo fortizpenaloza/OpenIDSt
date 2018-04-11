@@ -4,8 +4,8 @@ testInstanceCreation
 	| aOAuth2AuthorizationServer openIDProvider client authorizationUrl response httpClient token |
 
 	aOAuth2AuthorizationServer := OAuth2AuthorizationServer
-		providingAuthorizationGrantsAt: self authorizationEndpoint
-		providingTokensAt: self tokenEndpoint.
+		redirectingResourceOwnerForAuthorizationTo: self authorizationEndpoint
+		andIssuingTokensAt: self tokenEndpoint.
 
 	client := OAuth2Client
 		registeredOn: aOAuth2AuthorizationServer
