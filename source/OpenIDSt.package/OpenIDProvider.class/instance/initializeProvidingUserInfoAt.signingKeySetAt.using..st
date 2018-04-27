@@ -4,6 +4,6 @@ initializeProvidingUserInfoAt: aUserInfoLocation signingKeySetAt: aJwkSetLocatio
 	userInfoEndpoint := aUserInfoLocation.
 	jwkSetLocation := aJwkSetLocation.
 
-	authorizationGrant := AuthorizationCodeGrant
+	authorizationGrant := AuthorizationCodeGrant 
 		on: aRelayingParty
 		scopedTo: 'openid name profile picture'

@@ -6,7 +6,7 @@ testInstanceCreation
 	aOAuth2AuthorizationServer := OAuth2AuthorizationServer
 		redirectingResourceOwnerForAuthorizationTo: self authorizationEndpoint
 		andIssuingTokensAt: self tokenEndpoint.
-
+ 
 	client := OAuth2Client
 		registeredOn: aOAuth2AuthorizationServer
 		as: '7Q7lAA9XzkyMGUhqGa9RC3GcNfObXCqW'
@@ -41,8 +41,8 @@ testInstanceCreation
 	httpClient := ZnClient new beOneShot.
 
 	token := openIDProvider
-		performOn: httpClient
-		with:
+		accessTokenUsing: httpClient
+		afterBeingRedirectedTo:
 			'http://localhost:8080/sign-in?code=AUTHORIZATION_CODE&state=STATE'
 				asZnUrl.
 
