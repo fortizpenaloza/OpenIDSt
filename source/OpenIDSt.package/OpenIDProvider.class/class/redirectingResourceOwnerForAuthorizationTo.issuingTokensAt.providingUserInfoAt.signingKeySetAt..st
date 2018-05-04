@@ -1,0 +1,8 @@
+instance creation
+redirectingResourceOwnerForAuthorizationTo: anAuthorizationEndpoint issuingTokensAt: aTokenEndpoint providingUserInfoAt: aUserInfoEndpoint signingKeySetAt: aSigningKeySetEndpoint
+
+	^ self new
+		initializeRedirectingResourceOwnerForAuthorizationTo: anAuthorizationEndpoint
+		issuingTokensAt: aTokenEndpoint
+		providingUserInfoAt: aUserInfoEndpoint
+		signingKeySetAt: aSigningKeySetEndpoint

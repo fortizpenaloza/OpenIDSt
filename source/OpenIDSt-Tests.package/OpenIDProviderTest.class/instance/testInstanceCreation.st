@@ -1,24 +1,23 @@
 tests
 testInstanceCreation
 
-	| aOAuth2AuthorizationServer openIDProvider client authorizationUrl response httpClient token |
+	| openIDProvider relyingParty authorizationUrl response httpClient token authorizationCodeGrant |
 
-	aOAuth2AuthorizationServer := OAuth2AuthorizationServer
+	openIDProvider := OpenIDProvider
 		redirectingResourceOwnerForAuthorizationTo: self authorizationEndpoint
-		andIssuingTokensAt: self tokenEndpoint.
+		issuingTokensAt: self tokenEndpoint
+		providingUserInfoAt: self userInfoEndpoint
+		signingKeySetAt: self jwksEndpoint.
  
-	client := OAuth2Client
-		registeredOn: aOAuth2AuthorizationServer
+	relyingParty := OAuth2Client
+		registeredOn: openIDProvider 
 		as: '7Q7lAA9XzkyMGUhqGa9RC3GcNfObXCqW'
 		sharing: 'fcZy-KVJvbT5DFEFfD8KEjLrPgu5dSDyJbAP7Z4gzBHRvFEqs3O_oq11kv7n3sH6'
 		redirectingTo: 'http://localhost:8080/sign-in' asZnUrl.
 
-	openIDProvider := OpenIDProvider
-		providingUserInfoAt: self userInfoEndpoint
-		signingKeySetAt: self jwksEndpoint
-		using: client.
+	authorizationCodeGrant := AuthorizationCodeGrant on: relyingParty scopedTo: 'openid' returningTo: 'xyz'.
+	authorizationUrl := authorizationCodeGrant authorizationUrl.
 
-	authorizationUrl := openIDProvider authorizationUrl.
 	self
 		assertCollection: authorizationUrl query
 		hasSameElements:
