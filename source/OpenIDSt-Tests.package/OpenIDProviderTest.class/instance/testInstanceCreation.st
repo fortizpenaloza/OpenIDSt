@@ -40,7 +40,7 @@ testInstanceCreation
 	httpClient := ZnClient new beOneShot.
 
 	token := openIDProvider
-		accessTokenUsing: httpClient
+		issueAccessTokenUsing: httpClient
 		afterBeingRedirectedTo:
 			'http://localhost:8080/sign-in?code=AUTHORIZATION_CODE&state=STATE'
 				asZnUrl.
